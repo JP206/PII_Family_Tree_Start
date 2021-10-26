@@ -4,16 +4,16 @@ using System;
 
 namespace Library
 {
-    public class Node
+    public class Node 
     {
-        private int number;
+        private Persona persona;
 
         private List<Node> children = new List<Node>();
 
-        public int Number {
+        public Persona Persona {
             get
             {
-                return this.number;
+                return this.persona;
             }
         }
 
@@ -24,15 +24,19 @@ namespace Library
             }
         }
 
-        public Node(int number)
+        public Node(int edad, string nombre)
         {
-            this.number = number;
+            this.persona = new Persona(nombre, edad);
         }
 
         public void AddChildren(Node n)
         {
             this.children.Add(n);
         }
-        
+
+        public void Accept(Visitor visit)
+        {
+            visit.Visit(this);
+        }
     }
 }
